@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    //que bacaneria
     //1 Creamos los Atributos
     private EditText etCodigo, etNombre, etApellido, etRut, etCorreo, etContraseña, etPais;
 
