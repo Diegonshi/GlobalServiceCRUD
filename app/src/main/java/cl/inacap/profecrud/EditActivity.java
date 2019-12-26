@@ -3,31 +3,76 @@ package cl.inacap.profecrud;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity {
     //que bacaneria
     //1 Creamos los Atributos
-    public EditText etCodigo, etNombre, etApellido, etRut, etCorreo, etContraseña, etPais;
+    public EditText  etNombre, etApellido, etRut, etCorreo, etContraseña, etPais;
+    public TextView etCodigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_edit);
+
+
+        Bundle extras = getIntent().getExtras();
+        String dat1 = extras.getString("cod");
 
         //2 Creamos la relación entre la parte lógica y gráfica
-        etCodigo = (EditText)findViewById(R.id.etCodigo);
+        etCodigo = (TextView)findViewById(R.id.etCodigo);
         etNombre = (EditText)findViewById(R.id.etNombre);
         etApellido = (EditText)findViewById(R.id.etApellido);
         etRut = (EditText)findViewById(R.id.etRut);
         etCorreo = (EditText)findViewById(R.id.etCorreo);
         etContraseña = (EditText)findViewById(R.id.etContraseña);
         etPais = (EditText)findViewById(R.id.etPais);
+
+
+
+            //Creamos un objeto AdminSQLite
+            AdminSQLite admin = new AdminSQLite(this, "globalService", null, 1);
+            //12 Creamos un objeto para abrir la BD en modo lectura y escritura
+            //getwritableDatabase() cumple esta función
+            SQLiteDatabase bd = admin.getWritableDatabase();
+            //13 creamos una variable para almacenar lo que estamos buscando
+            String codigo = dat1;
+            //14 Validamos que el campo no este vacio
+            if(!codigo.isEmpty()){
+                //15 Creamos un objeto tipo cursor para recorrer el resultado de la query
+                Cursor fila = bd.rawQuery("select nombre, apellido, rut, correo, contraseña, pais from usuarios where codigo = " +codigo, null);
+                //16 Consultamos si encontro o no el registro
+                if(fila.moveToFirst()){
+                    etNombre.setText(fila.getString(0));
+                    etApellido.setText(fila.getString(1));
+                    etRut.setText(fila.getString(2));
+                    etCorreo.setText(fila.getString(3));
+                    etContraseña.setText(fila.getString(4));
+                    etPais.setText(fila.getString(5));
+                    etCodigo.setText(dat1);
+
+                }else{
+                    Toast.makeText(this, "No se registran Usuarios con este Código",Toast.LENGTH_SHORT).show();
+                    Intent edd = new Intent(this, MenuActivity.class);
+                    startActivity(edd);
+                }
+                //17 Cerramos BD
+                bd.close();
+            }else{
+                //Si el editText esta vacio
+                Toast.makeText(this, "Debe ingresar el Código del Usuario", Toast.LENGTH_SHORT).show();
+            }
+
+
+
     }
 
     //3 Creamos el Método para guardar
@@ -51,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         String pais = etPais.getText().toString();
 
         //6 Validamos los campos
-        if(!codigo.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty() && !rut.isEmpty() && !correo.isEmpty() && !contraseña.isEmpty() && !pais.isEmpty()){
+        if( !nombre.isEmpty() && !apellido.isEmpty() && !rut.isEmpty() && !correo.isEmpty() && !contraseña.isEmpty() && !pais.isEmpty()){
             //7 Creamos un objeto para crear el registro
             ContentValues registro = new ContentValues();
             registro.put("codigo",codigo);
@@ -146,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "El Código no se encuetra en los registros", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "Usuario Modificado con Éxito", Toast.LENGTH_SHORT).show();
+                Intent edd = new Intent(this, MenuActivity.class);
+                startActivity(edd);
             }
             //Limpiamos los EditText
             etCodigo.setText("");
@@ -180,9 +227,13 @@ public class MainActivity extends AppCompatActivity {
             etPais.setText("");
 
             if(cantidad==0){
-                Toast.makeText(this,"No se Registran Uusuarios con ese Código", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"No se Registran Usuarios con ese Código", Toast.LENGTH_SHORT).show();
+                Intent edd = new Intent(this, MenuActivity.class);
+                startActivity(edd);
             }else{
                 Toast.makeText(this, "Uusuario Eliminado Éxitosamente", Toast.LENGTH_SHORT).show();
+                Intent edd = new Intent(this, MenuActivity.class);
+                startActivity(edd);
             }
         }else{
             Toast.makeText(this, "Debe ingresar el Código del Uusario",Toast.LENGTH_SHORT).show();

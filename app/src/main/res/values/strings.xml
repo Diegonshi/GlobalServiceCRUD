@@ -12,4 +12,7 @@
     <string name="btnBuscar">Buscar Usuario</string>
     <string name="btnModificar">Modificar Usuario</string>
     <string name="btnEliminar">Eliminar Usuario</string>
+    <string name="btnAdd">Nuevo Usuario</string>
+    <string name="btnEdit">Buscar / Eliminar / Editar</string>
+    <string name="txtCodigo">Ingrese el Código del Usuario</string>
 </resources>

@@ -3,6 +3,7 @@ package cl.inacap.profecrud;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class AddUsuario extends AppCompatActivity {
     //que bacaneria
     //1 Creamos los Atributos
     public EditText etCodigo, etNombre, etApellido, etRut, etCorreo, etContraseña, etPais;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_usuario);
 
         //2 Creamos la relación entre la parte lógica y gráfica
         etCodigo = (EditText)findViewById(R.id.etCodigo);
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
             //Si el usuario no ingreso los Datos
             Toast.makeText(this, "Los campos son obligatorios", Toast.LENGTH_SHORT).show();
         }
+        Intent edd = new Intent(this, MenuActivity.class);
+        startActivity(edd);
+
     }
 
     //11 Creamos el método Buscar
@@ -180,7 +184,9 @@ public class MainActivity extends AppCompatActivity {
             etPais.setText("");
 
             if(cantidad==0){
-                Toast.makeText(this,"No se Registran Uusuarios con ese Código", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"No se Registran Usuarios con ese Código", Toast.LENGTH_SHORT).show();
+                Intent edd = new Intent(this, MenuActivity.class);
+                startActivity(edd);
             }else{
                 Toast.makeText(this, "Uusuario Eliminado Éxitosamente", Toast.LENGTH_SHORT).show();
             }

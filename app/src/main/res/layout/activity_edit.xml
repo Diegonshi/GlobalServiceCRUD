@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".EditActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,21 +17,21 @@
             android:id="@+id/tvTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:text="@string/tvTitulo"
+            android:text="Código Usuario"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/etCodigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:ems="10"
-            android:hint="@string/etCodigo"
-            android:inputType="textPersonName" />
+            android:gravity="center"
+            android:text="COD"
+            android:textColor="#9C27B0"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/etNombre"
@@ -86,13 +86,6 @@
             android:hint="@string/etPais"
             android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/btnGuardar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:onClick="guardarProducto"
-            android:text="@string/btnGuardar" />
 
         <Button
             android:id="@+id/btnModificar"
@@ -109,14 +102,6 @@
             android:layout_marginTop="3dp"
             android:onClick="eliminarProducto"
             android:text="@string/btnEliminar" />
-
-        <Button
-            android:id="@+id/btnBuscar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:onClick="buscarProducto"
-            android:text="@string/btnBuscar" />
 
     </LinearLayout>
 </RelativeLayout>
