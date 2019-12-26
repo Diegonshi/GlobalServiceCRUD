@@ -42,6 +42,7 @@ public class EditActivity extends AppCompatActivity {
             AdminSQLite admin = new AdminSQLite(this, "globalService", null, 1);
             //12 Creamos un objeto para abrir la BD en modo lectura y escritura
             //getwritableDatabase() cumple esta función
+
             SQLiteDatabase bd = admin.getWritableDatabase();
             //13 creamos una variable para almacenar lo que estamos buscando
             String codigo = dat1;
