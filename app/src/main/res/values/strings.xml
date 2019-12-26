@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GlobalServiceCRUD</string>
+    <string name="tvTitulo">Mantenedor de Usuarios</string>
+    <string name="etCodigo">Ingrese el Código del Usuario</string>
+    <string name="etNombre">Ingrese el Nombre</string>
+    <string name="etApellido">Ingrese el Apellido</string>
+    <string name="etRut">Ingrese el Rut(sin guión)</string>
+    <string name="etCorreo">Ingrese el Correo</string>
+    <string name="etContraseña">Ingrese la Contraseña</string>
+    <string name="etPais">Ingrese el Páis</string>
+    <string name="btnGuardar">Guardar Usuario</string>
+    <string name="btnBuscar">Buscar Usuario</string>
+    <string name="btnModificar">Modificar Usuario</string>
+    <string name="btnEliminar">Eliminar Usuario</string>
+</resources>
